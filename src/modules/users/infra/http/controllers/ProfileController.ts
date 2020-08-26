@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import UpdateProfileService from '@modules/users/services/UpdateProfileService';
 import ShowProfileService from '@modules/users/services/ShowProfileService';
+import ListAllUsersService from '@modules/users/services/ListAllUsersService';
 
 export interface IGetUserAuthInfoRequest extends Request {
   user: {
@@ -11,6 +12,14 @@ export interface IGetUserAuthInfoRequest extends Request {
 }
 
 export default class ProfileController {
+  public async index(req: Req, res: Response): Promise<Response> {
+    const listAllUsersService = container.resolve(ListAllUsersService);
+
+    const users = await listAllUsersService.execute();
+
+    return res.json(users);
+  }
+
   public async show(
     req: IGetUserAuthInfoRequest,
     res: Response,

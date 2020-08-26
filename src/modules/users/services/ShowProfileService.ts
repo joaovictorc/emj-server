@@ -7,7 +7,6 @@ import AppError from '@shared/errors/AppError';
 import ISubjectRepository from '@modules/subjects/repositories/ISubjectRepository';
 import Student from '@modules/students/infra/typeorm/entities/Student';
 import IStudentRepository from '@modules/students/repositories/IStudentRepository';
-import ITeacherRepository from '@modules/teachers/repositories/ITeacherRepository';
 
 interface IRequest {
   user_id: string;

@@ -10,6 +10,7 @@ const profileController = new ProfileController();
 
 profileRouter.use(ensureAuthenticated);
 
+profileRouter.get('/', profileController.index);
 profileRouter.get('/show', profileController.show);
 
 profileRouter.put(
