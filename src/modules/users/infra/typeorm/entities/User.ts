@@ -2,7 +2,7 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  CreatedDateColumn,
+  CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -23,7 +23,13 @@ class User {
   @Column()
   is_active: boolean;
 
-  @CreatedDateColumn()
+  @Column()
+  rule: string;
+
+  @Column()
+  enrollment: string;
+
+  @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()

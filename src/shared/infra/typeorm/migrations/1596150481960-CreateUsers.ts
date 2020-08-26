@@ -11,8 +11,9 @@ export class CreateUsers1596150481960 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'varchar',
+            type: 'uuid',
             isPrimary: true,
+            isUnique: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
@@ -30,9 +31,18 @@ export class CreateUsers1596150481960 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'rule',
+            type: 'varchar',
+          },
+          {
+            name: 'enrollment',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'is_active',
             type: 'boolean',
-            default: false,
+            default: true,
           },
           {
             name: 'created_at',
