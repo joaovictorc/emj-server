@@ -11,7 +11,6 @@ interface IRequest {
   user_id: string;
   full_name: string;
   email: string;
-  old_password?: string;
   password?: string;
   enrollment: string;
 }
@@ -30,7 +29,6 @@ class UpdateUserService {
     user_id,
     full_name,
     email,
-    old_password,
     password,
     enrollment,
   }: IRequest): Promise<User> {
@@ -61,22 +59,7 @@ class UpdateUserService {
     user.email = email;
     user.enrollment = enrollment;
 
-    if (password && !old_password) {
-      throw new AppError(
-        'You need to inform the old password to set a new password',
-      );
-    }
-
-    if (password && old_password) {
-      const checkOldPassword = await this.hashProvider.compareHash(
-        old_password,
-        user.password,
-      );
-
-      if (!checkOldPassword) {
-        throw new AppError('Old password dont match');
-      }
-
+    if (password) {
       user.password = await this.hashProvider.generateHash(password);
     }
 

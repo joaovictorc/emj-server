@@ -46,7 +46,6 @@ export default class UsersController {
       user_id,
       full_name,
       email,
-      old_password,
       password,
       enrollment,
     });
