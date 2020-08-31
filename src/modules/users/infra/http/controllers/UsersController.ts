@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import ShowUserService from '@modules/users/services/ShowUserService';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import UpdateUserService from '@modules/users/services/UpdateUserService';
 import DeleteUserService from '@modules/users/services/DeleteUserService';
@@ -8,6 +9,16 @@ import DeleteUserService from '@modules/users/services/DeleteUserService';
 import { DeleteResult } from 'typeorm';
 
 export default class UsersController {
+  public async show(req: Request, res: Response): Promise<Response> {
+    const { user_id } = req.params;
+
+    const showUserService = container.resolve(ShowUserService);
+
+    const user = await showUserService.execute({ user_id });
+
+    return res.json(user);
+  }
+
   public async create(req: Request, res: Response): Promise<Response> {
     const { full_name, email, password, rule, enrollment } = req.body;
 
