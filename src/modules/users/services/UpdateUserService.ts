@@ -13,6 +13,7 @@ interface IRequest {
   email: string;
   old_password?: string;
   password?: string;
+  enrollment: string;
 }
 
 @injectable()
@@ -31,6 +32,7 @@ class UpdateUserService {
     email,
     old_password,
     password,
+    enrollment,
   }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
@@ -44,8 +46,20 @@ class UpdateUserService {
       throw new AppError('This email already is property of another account');
     }
 
+    const checkUserEnrollmentExists = await this.usersRepository.findByEnrollment(
+      enrollment,
+    );
+
+    if (
+      checkUserEnrollmentExists &&
+      checkUserEnrollmentExists.enrollment !== user.enrollment
+    ) {
+      throw new AppError('Enrollment already used');
+    }
+
     user.full_name = full_name;
     user.email = email;
+    user.enrollment = enrollment;
 
     if (password && !old_password) {
       throw new AppError(
