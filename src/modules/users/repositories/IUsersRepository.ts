@@ -1,5 +1,6 @@
 import User from '../infra/typeorm/entities/User';
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
+import { DeleteResult } from 'typeorm';
 
 export default interface IUsersRepository {
   findAll(): Promise<User[] | undefined>;
@@ -9,4 +10,5 @@ export default interface IUsersRepository {
   findByEnrollment(enrollment: string): Promise<User | undefined>;
   create(data: ICreateUserDTO): Promise<User>;
   save(user: User): Promise<User>;
+  delete(user_id: string): Promise<DeleteResult>;
 }
