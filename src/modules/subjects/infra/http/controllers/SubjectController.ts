@@ -5,7 +5,7 @@ import ListAllSubjects from '@modules/subjects/services/ListAllSubjects';
 import ShowSubjectService from '@modules/subjects/services/ShowSubjectService';
 import CreateSubjectService from '@modules/subjects/services/CreateSubjectService';
 import UpdateSubjectService from '@modules/subjects/services/UpdateSubjectService';
-import DeleteClassService from '@modules/class/services/DeleteClassService';
+import DeleteSubjectsService from '@modules/subjects/services/DeleteSubjectsService';
 
 export default class ClassController {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -60,13 +60,11 @@ export default class ClassController {
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
-    const { classId } = req.params;
+    const { subject_id } = req.params;
 
-    console.log(classId);
+    const deleteSubjectsService = container.resolve(DeleteSubjectsService);
 
-    const deleteClassService = container.resolve(DeleteClassService);
-
-    await deleteClassService.execute({ classId });
+    await deleteSubjectsService.execute({ subject_id });
 
     return res.status(204).send();
   }

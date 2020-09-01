@@ -20,6 +20,6 @@ subjectsRouter.get(
 );
 subjectsRouter.post('/', subjectController.create);
 subjectsRouter.put('/:subjectId', subjectController.update);
-subjectsRouter.delete('/:subjectId', subjectController.delete);
+subjectsRouter.delete('/:subject_id', subjectController.delete);
 
 export default subjectsRouter;

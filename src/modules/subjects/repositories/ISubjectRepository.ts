@@ -1,5 +1,6 @@
 import Subject from '../infra/typeorm/entities/Subject';
 import ICreateSubjectsDTO from '../dtos/ICreateSubjectsDTO';
+import { DeleteResult } from 'typeorm';
 
 export default interface ISubjectRepository {
   findAll(): Promise<Subject[] | undefined>;
@@ -15,5 +16,5 @@ export default interface ISubjectRepository {
   // findByEnrollment(enrollment: string): Promise<Class | undefined>;
   create(subjectData: ICreateSubjectsDTO): Promise<Subject>;
   save(subjectData: Subject): Promise<Subject>;
-  delete(subjectData: string): Promise<DeleteResult>;
+  delete(subject_id: string): Promise<DeleteResult>;
 }

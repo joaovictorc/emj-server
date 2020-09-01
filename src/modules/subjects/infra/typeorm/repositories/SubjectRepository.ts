@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, DeleteResult } from 'typeorm';
 
 import IClassRepository from '@modules/subjects/repositories/ISubjectRepository';
 import ICreateSubjectsDTO from '@modules/subjects/dtos/ICreateSubjectsDTO';
@@ -76,8 +76,8 @@ class ClassRepository implements IClassRepository {
     return this.ormRepository.save(subjectInfo);
   }
 
-  public async delete(subjectData: string): Promise<DeleteResult> {
-    return this.ormRepository.delete(subjectData);
+  public async delete(subject_id: string): Promise<DeleteResult> {
+    return this.ormRepository.delete(subject_id);
   }
 }
 
