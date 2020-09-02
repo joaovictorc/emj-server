@@ -10,6 +10,7 @@ import IStudentRepository from '@modules/students/repositories/IStudentRepositor
 
 interface IRequest {
   user_id: string;
+  onlyUser?: boolean;
 }
 
 @injectable()
@@ -24,6 +25,7 @@ class ShowUserService {
 
   public async execute({
     user_id,
+    onlyUser,
   }: IRequest): Promise<User | Student | undefined> {
     let rule: string;
     const user = await this.usersRepository.findById(user_id);
@@ -32,7 +34,7 @@ class ShowUserService {
       throw new AppError('User not found.');
     }
 
-    if (user?.rule == 'student') {
+    if (user?.rule == 'student' && onlyUser === true) {
       rule = user?.rule;
 
       const student = await this.studentRepository.findByUserId(user.id);

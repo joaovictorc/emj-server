@@ -12,10 +12,13 @@ import { DeleteResult } from 'typeorm';
 export default class UsersController {
   public async show(req: Request, res: Response): Promise<Response> {
     const { user_id } = req.params;
+    const { userOnly } = req.query;
+
+    let onlyUser = userOnly == 'true' ? true : false;
 
     const showUserService = container.resolve(ShowUserService);
 
-    const user = await showUserService.execute({ user_id });
+    const user = await showUserService.execute({ user_id, onlyUser });
 
     return res.json(user);
   }
