@@ -34,7 +34,7 @@ class ShowUserService {
       throw new AppError('User not found.');
     }
 
-    if (user?.rule == 'student' && onlyUser === true) {
+    if (user?.rule == 'student' && onlyUser === false) {
       rule = user?.rule;
 
       const student = await this.studentRepository.findByUserId(user.id);
