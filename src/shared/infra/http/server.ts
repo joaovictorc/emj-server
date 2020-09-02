@@ -62,6 +62,6 @@ io.on('connection', (socket) => {
   });
 });
 
-app.listen(3333, () => {
+server.listen(3333, () => {
   console.log('🚀 Backend started on port 3333!');
 });
