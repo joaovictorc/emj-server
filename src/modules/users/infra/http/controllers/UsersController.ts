@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import ShowUserService from '@modules/users/services/ShowUserService';
 import CreateUserService from '@modules/users/services/CreateUserService';
+import CreateStudentService from '@modules/students/services/CreateStudentService';
 import UpdateUserService from '@modules/users/services/UpdateUserService';
 import DeleteUserService from '@modules/users/services/DeleteUserService';
 
@@ -20,9 +21,10 @@ export default class UsersController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { full_name, email, password, rule, enrollment } = req.body;
+    const { full_name, email, password, rule, enrollment, class_id } = req.body;
 
     const createUserService = container.resolve(CreateUserService);
+    const createStudentService = container.resolve(CreateStudentService);
 
     const user = await createUserService.execute({
       full_name,
@@ -31,6 +33,12 @@ export default class UsersController {
       rule,
       enrollment,
     });
+
+    let user_id = await user.id;
+
+    if (rule === 'student' && class_id) {
+      await createStudentService.execute({ user_id, class_id });
+    }
 
     return res.json(user);
   }
