@@ -31,13 +31,13 @@ class AuthenticateUserService {
     const user = await this.usersRespository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('Incorret enrollment/password combination', 401);
+      throw new AppError('Icorreta combinação de email/senha', 401);
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new AppError('Incorret enrollment/password combination', 401);
+      throw new AppError('Icorreta combinação de email/senha', 401);
     }
 
     const token = sign({}, authConfig.jwt.secret, {
