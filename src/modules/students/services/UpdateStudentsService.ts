@@ -6,33 +6,27 @@ import ISubjectRepository from '../repositories/IStudentRepository';
 import Subject from '../infra/typeorm/entities/Student';
 
 interface IRequest {
-  subjectId: string;
-  title: string;
+  user_id: string;
+  class_id: string;
 }
 
 @injectable()
 class UpdateStudentsService {
   constructor(
-    @inject('SubjectRepository')
-    private subjectService: ISubjectRepository,
+    @inject('StudentRepository')
+    private studentRepository: ISubjectRepository,
   ) {}
 
-  public async execute({ subjectId, title }: IRequest): Promise<Subject> {
-    const subject = await this.subjectService.findById(subjectId);
+  public async execute({ user_id, class_id }: IRequest): Promise<Subject> {
+    const student = await this.studentRepository.findByUserId(user_id);
 
-    if (!subject) {
+    if (!student) {
       throw new AppError('Subject not found');
     }
 
-    const subjectWithUpdateTitle = await this.subjectService.findByTitle(title);
+    student.class_id = class_id;
 
-    if (subjectWithUpdateTitle && subjectWithUpdateTitle.id !== subjectId) {
-      throw new AppError('Already exists a subject with this title');
-    }
-
-    subject.title = title;
-
-    return this.subjectService.save(subject);
+    return this.studentRepository.save(student);
   }
 }
 

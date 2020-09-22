@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import ListAllStudents from '@modules/students/services/ListAllStudents';
 import CreateStudentService from '@modules/students/services/CreateStudentService';
-import UpdateSubjectService from '@modules/subjects/services/UpdateSubjectService';
+import UpdateStudentsService from '@modules/students/services/UpdateStudentsService';
 import DeleteClassService from '@modules/class/services/DeleteClassService';
 
 export default class ClassController {
@@ -29,14 +29,14 @@ export default class ClassController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { subjectId } = req.params;
-    const { title } = req.body;
+    const { user_id } = req.params;
+    const { class_id } = req.body;
 
-    const updateSubjectService = container.resolve(UpdateSubjectService);
+    const updateStudentsService = container.resolve(UpdateStudentsService);
 
-    const subject = await updateSubjectService.execute({
-      subjectId,
-      title,
+    const subject = await updateStudentsService.execute({
+      user_id,
+      class_id,
     });
 
     return res.json(subject);
