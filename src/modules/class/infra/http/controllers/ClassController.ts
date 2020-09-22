@@ -59,11 +59,9 @@ export default class ClassController {
   public async delete(req: Request, res: Response): Promise<Response> {
     const { classId } = req.params;
 
-    console.log(classId);
+    // const deleteClassService = container.resolve(DeleteClassService);
 
-    const deleteClassService = container.resolve(DeleteClassService);
-
-    await deleteClassService.execute({ classId });
+    // await deleteClassService.execute({ classId });
 
     return res.status(204).send();
   }
