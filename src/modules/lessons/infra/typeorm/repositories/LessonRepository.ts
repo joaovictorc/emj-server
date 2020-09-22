@@ -125,8 +125,8 @@ class LessonRepository implements ILessonRepository {
     return this.ormRepository.save(studentData);
   }
 
-  public async delete(studentData: string): Promise<DeleteResult> {
-    return this.ormRepository.delete(studentData);
+  public async delete(lesson_id: string): Promise<DeleteResult> {
+    return this.ormRepository.delete(lesson_id);
   }
 }
 

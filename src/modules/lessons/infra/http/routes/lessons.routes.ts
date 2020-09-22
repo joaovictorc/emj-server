@@ -23,6 +23,6 @@ lessonsRouter.get('/class/:class_id', lessonsByClasController.index);
 lessonsRouter.get('/class/only/:class_id', lessonsByClassOnlyController.index);
 lessonsRouter.post('/create', ensureAuthenticated, lessonController.create);
 lessonsRouter.put('/:lesson_id', lessonController.update);
-lessonsRouter.delete('/:subjectId', lessonController.delete);
+lessonsRouter.delete('/:lesson_id', lessonController.delete);
 
 export default lessonsRouter;

@@ -1,5 +1,6 @@
 import Lesson from '../infra/typeorm/entities/Lesson';
 import ICreateLessonsDTO from '../dtos/ICreateLessonsDTO';
+import { DeleteResult } from 'typeorm';
 
 export default interface ILessonRepository {
   findAll(): Promise<Lesson[] | undefined>;
@@ -23,5 +24,5 @@ export default interface ILessonRepository {
   // findByEnrollment(enrollment: string): Promise<Class | undefined>;
   create(studentData: ICreateLessonsDTO): Promise<Lesson>;
   save(studentData: Lesson): Promise<Lesson>;
-  delete(studentData: string): Promise<DeleteResult>;
+  delete(lesson_id: string): Promise<DeleteResult>;
 }

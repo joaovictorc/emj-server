@@ -6,7 +6,7 @@ import ListAllLessons from '@modules/lessons/services/ListAllLessons';
 import ShowLessonService from '@modules/lessons/services/ShowLessonService';
 import CreateLessonsService from '@modules/lessons/services/CreateLessonsService';
 import UpdateLessonsService from '@modules/lessons/services/UpdateLessonsService';
-import DeleteClassService from '@modules/class/services/DeleteClassService';
+import DeleteLessonsService from '@modules/lessons/services/DeleteLessonsService';
 
 export interface ISocket extends Request {
   user: {
@@ -89,13 +89,11 @@ export default class LessonController {
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
-    const { classId } = req.params;
+    const { lesson_id } = req.params;
 
-    console.log(classId);
+    const deleteLessonsService = container.resolve(DeleteLessonsService);
 
-    const deleteClassService = container.resolve(DeleteClassService);
-
-    await deleteClassService.execute({ classId });
+    await deleteLessonsService.execute({ lesson_id });
 
     return res.status(204).send();
   }
