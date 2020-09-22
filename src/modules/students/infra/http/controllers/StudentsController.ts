@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 import ListAllStudents from '@modules/students/services/ListAllStudents';
 import CreateStudentService from '@modules/students/services/CreateStudentService';
 import UpdateStudentsService from '@modules/students/services/UpdateStudentsService';
-import DeleteClassService from '@modules/class/services/DeleteClassService';
+import DeleteStudentsService from '@modules/students/services/DeleteStudentsService';
 
 export default class ClassController {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -45,9 +45,9 @@ export default class ClassController {
   public async delete(req: Request, res: Response): Promise<Response> {
     const { user_id } = req.params;
 
-    const deleteClassService = container.resolve(DeleteClassService);
+    const deleteStudentsService = container.resolve(DeleteStudentsService);
 
-    await deleteClassService.execute({ user_id });
+    await deleteStudentsService.execute({ user_id });
 
     return res.status(204).send();
   }
