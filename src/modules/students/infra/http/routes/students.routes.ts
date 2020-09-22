@@ -8,6 +8,6 @@ const studentsController = new StudentsController();
 studentsRouter.get('/', studentsController.index);
 studentsRouter.post('/', studentsController.create);
 studentsRouter.put('/:user_id', studentsController.update);
-studentsRouter.delete('/:subjectId', studentsController.delete);
+studentsRouter.delete('/:user_id', studentsController.delete);
 
 export default studentsRouter;

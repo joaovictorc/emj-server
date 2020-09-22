@@ -9,5 +9,5 @@ export default interface IStudentRepository {
   // findByEnrollment(enrollment: string): Promise<Class | undefined>;
   create(studentData: ICreateStudentsDTO): Promise<Student>;
   save(studentData: Student): Promise<Student>;
-  delete(studentData: string): Promise<DeleteResult>;
+  delete(student_id: string): Promise<DeleteResult>;
 }

@@ -2,32 +2,30 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import IClassRepository from '../repositories/IStudentRepository';
+import IStudentRepository from '../repositories/IStudentRepository';
 
 interface IRequest {
-  classId: string;
+  user_id: string;
 }
 
 @injectable()
-class CreatePlansService {
+class DeleteStudentsService {
   constructor(
-    @inject('ClassRepository')
-    private ClassRepository: IClassRepository,
+    @inject('StudentRepository')
+    private studentRepository: IStudentRepository,
   ) {}
 
-  public async execute({ classId }: IRequest): Promise<void> {
-    const classData = await this.ClassRepository.findById(classId);
+  public async execute({ user_id }: IRequest): Promise<void> {
+    const student = await this.studentRepository.findByUserId(user_id);
 
-    console.log(classData);
-
-    if (!classData) {
+    if (!student) {
       throw new AppError(
-        'The class you are trying to delete does not exist in the records',
+        'The student profile you are trying to delete does not exist in the records',
       );
     }
 
-    await this.ClassRepository.delete(classData.id);
+    await this.studentRepository.delete(student.id);
   }
 }
 
-export default CreatePlansService;
+export default DeleteStudentsService;

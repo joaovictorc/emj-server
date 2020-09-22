@@ -56,8 +56,8 @@ class StudentRepository implements IStudentRepository {
     return this.ormRepository.save(studentData);
   }
 
-  public async delete(studentData: string): Promise<DeleteResult> {
-    return this.ormRepository.delete(studentData);
+  public async delete(student_id: string): Promise<DeleteResult> {
+    return this.ormRepository.delete(student_id);
   }
 }
 
