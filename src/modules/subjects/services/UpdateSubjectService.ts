@@ -42,6 +42,7 @@ class UpdateSubjectService {
     subject.title = title;
     subject.emoji = emoji;
     subject.color = color;
+    subject.class_id = class_id;
 
     return this.subjectService.save(subject);
   }
