@@ -18,15 +18,13 @@ class CreatePlansService {
   public async execute({ classId }: IRequest): Promise<void> {
     const classData = await this.ClassRepository.findById(classId);
 
-    console.log(classData);
-
     if (!classData) {
       throw new AppError(
         'The class you are trying to delete does not exist in the records',
       );
     }
 
-    await this.ClassRepository.delete(classData.id);
+    // await this.ClassRepository.delete(classData.id);
   }
 }
 
