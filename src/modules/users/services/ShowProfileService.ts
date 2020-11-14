@@ -29,7 +29,7 @@ class ShowProfileService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new AppError('User not found.');
+      throw new AppError('Usuário não encontrado.');
     }
 
     if (user?.rule == 'student') {
@@ -38,7 +38,7 @@ class ShowProfileService {
       const student = await this.studentRepository.findByUserId(user.id);
 
       if (!student) {
-        throw new AppError('Student not found.');
+        throw new AppError('Estudante não encontrado.');
       }
 
       return student;

@@ -21,7 +21,7 @@ class ShowProfileService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new AppError('Users not found.');
+      throw new AppError('Usuário não encontrado.');
     }
 
     await this.usersRepository.delete(user.id);

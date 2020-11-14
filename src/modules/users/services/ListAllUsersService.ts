@@ -16,7 +16,7 @@ class ShowProfileService {
     const user = await this.usersRepository.findAll();
 
     if (!user) {
-      throw new AppError('Users not found.');
+      throw new AppError('Usuários não encontrados.');
     }
 
     return user;

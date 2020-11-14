@@ -33,7 +33,7 @@ class CreateUserService {
     const checkUserEmailExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserEmailExists) {
-      throw new AppError('Email adress already used');
+      throw new AppError('Este e-mail já está cadastrado.');
     }
 
     const checkUserEnrollmentExists = await this.usersRepository.findByEnrollment(
@@ -41,7 +41,7 @@ class CreateUserService {
     );
 
     if (checkUserEnrollmentExists) {
-      throw new AppError('Enrollment already used');
+      throw new AppError('Matrícula já utilizada. Use outra matrícula.');
     }
 
     const hashedPassword = await hash(password, 8);
