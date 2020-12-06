@@ -16,6 +16,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.3
         with:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           node-version: 12.x
           
       - name: Install dependencies
