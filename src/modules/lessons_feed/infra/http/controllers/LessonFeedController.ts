@@ -8,9 +8,9 @@ import AppError from '@shared/errors/AppError';
 
 export default class LessonStatsController {
   public async index(req: Request, res: Response): Promise<Response> {
-    const { lesson_id } = req.query;
+    const { subject_id } = req.query;
 
-    if (!lesson_id) {
+    if (!subject_id) {
       throw new AppError('É necessário que você informe a matéria para que possamos listar as atividades')
     }
 
@@ -18,7 +18,7 @@ export default class LessonStatsController {
       ListAllLessonStatsService,
     );
 
-    const lessonStats = await listAllLessonStatsService.execute({lesson_id});
+    const lessonStats = await listAllLessonStatsService.execute({subject_id});
 
     return res.json(lessonStats);
   }
@@ -36,7 +36,7 @@ export default class LessonStatsController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { user_id, lesson_id, desc, file_url } = req.body;
+    const { user_id, subject_id, lesson_id, desc, file_url } = req.body;
 
     const createLessonFeedService = container.resolve(
       CreateLessonFeedService,
@@ -44,6 +44,7 @@ export default class LessonStatsController {
 
     const lessonStats = await createLessonFeedService.execute({
       user_id,
+      subject_id,
       lesson_id,
       desc,
       file_url

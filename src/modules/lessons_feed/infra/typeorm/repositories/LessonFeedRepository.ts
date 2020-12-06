@@ -20,6 +20,17 @@ class LessonFeedRepository implements ILessonFeedRepository {
     return lessonFeed;
   }
 
+  public async findBySubjectId(
+    subject_id: string,
+  ): Promise<LessonFeed[] | undefined> {
+    const lessonFeed = await this.ormRepository.find({
+      where: { subject_id: subject_id },
+      relations: ['user', 'lesson'],
+    });
+
+    return lessonFeed;
+  }
+
   public async findByLessonId(
     lesson_id: string,
   ): Promise<LessonFeed[] | undefined> {

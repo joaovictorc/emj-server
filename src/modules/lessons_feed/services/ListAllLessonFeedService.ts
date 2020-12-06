@@ -6,7 +6,7 @@ import ILessonFeedRepository from '../repositories/ILessonFeedRepository';
 import LessonFeed from '../infra/typeorm/entities/LessonFeed';
 
 interface IRequest {
-  lesson_id: string;
+  subject_id: string;
 }
 
 @injectable()
@@ -16,8 +16,8 @@ class ListAllLessonFeedService {
     private lessonFeedRepository: ILessonFeedRepository,
   ) {}
 
-  public async execute({lesson_id}: IRequest): Promise<LessonFeed[] | undefined> {
-    const lessonFeed = this.lessonFeedRepository.findByLessonId(lesson_id);
+  public async execute({subject_id}: IRequest): Promise<LessonFeed[] | undefined> {
+    const lessonFeed = this.lessonFeedRepository.findBySubjectId(subject_id);
 
     if (!lessonFeed) {
       throw new AppError('Não foi encontrado nenhuma atividade no feed desta matéria');

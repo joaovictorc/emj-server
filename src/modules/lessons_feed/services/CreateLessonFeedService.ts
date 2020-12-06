@@ -7,6 +7,7 @@ import LessonFeed from '../infra/typeorm/entities/LessonFeed';
 
 interface IRequest {
   user_id: string;
+  subject_id: string;
   lesson_id: string;
   desc: string;
   file_url: string;
@@ -19,7 +20,7 @@ class CreateLessonStatsService {
     private lessonFeedRepository: ILessonFeedRepository,
   ) {}
 
-  public async execute({ user_id, lesson_id, desc, file_url }: IRequest): Promise<LessonFeed> {
+  public async execute({ user_id, subject_id, lesson_id, desc, file_url }: IRequest): Promise<LessonFeed> {
 
     function isValidUrl(string: string) {
       try {
@@ -46,6 +47,7 @@ class CreateLessonStatsService {
 
     const lessonStats = this.lessonFeedRepository.create({
       user_id,
+      subject_id,
       lesson_id,
       desc,
       file_url

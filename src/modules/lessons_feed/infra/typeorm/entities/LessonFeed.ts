@@ -10,11 +10,19 @@ import {
 
 import User from '@modules/users/infra/typeorm/entities/User';
 import Lesson from '@modules/lessons/infra/typeorm/entities/Lesson';
+import Subject from '@modules/subjects/infra/typeorm/entities/Subject';
 
 @Entity('lessons_feed')
 class LessonFeed {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column()
+  subject_id: string;
+
+  @ManyToOne(() => Lesson)
+  @JoinColumn({ name: 'subject_id' })
+  subject: Subject;
 
   @Column()
   lesson_id: string;

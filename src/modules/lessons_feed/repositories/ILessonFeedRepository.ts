@@ -4,6 +4,7 @@ import ICreateLessonFeedDTO from '../dtos/ICreateLessonFeedDTO';
 export default interface ILessonStatsRepository {
   findAll(): Promise<LessonFeed[] | undefined>;
   // findAllWhen(match: IListAllClasssDTO): Promise<Class[] | undefined>;
+  findBySubjectId(subject_id: string): Promise<LessonFeed[] | undefined>;
   findByLessonId(lesson_id: string): Promise<LessonFeed[] | undefined>;
   findByUserId(user_id: string): Promise<LessonFeed | undefined>;
   findAllByUserId(user_id: string): Promise<LessonFeed[] | undefined>;
