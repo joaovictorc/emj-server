@@ -1,9 +1,9 @@
 import LessonFeed from '../infra/typeorm/entities/LessonFeed';
 import ICreateLessonFeedDTO from '../dtos/ICreateLessonFeedDTO';
-
 export default interface ILessonStatsRepository {
   findAll(): Promise<LessonFeed[] | undefined>;
   // findAllWhen(match: IListAllClasssDTO): Promise<Class[] | undefined>;
+  findById(activityId: string): Promise<LessonFeed | undefined>;
   findBySubjectId(subject_id: string): Promise<LessonFeed[] | undefined>;
   findByLessonId(lesson_id: string): Promise<LessonFeed[] | undefined>;
   findByUserId(user_id: string): Promise<LessonFeed | undefined>;

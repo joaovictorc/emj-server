@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import ListAllLessonStatsService from '@modules/lessons_feed/services/ListAllLessonFeedService';
 import ShowLessonStatsService from '@modules/lessonstats/services/ShowLessonStatsService';
 import CreateLessonFeedService from '@modules/lessons_feed/services/CreateLessonFeedService';
+import DeleteLessonFeedService from '@modules/lessons_feed/services/DeleteLessonsFeedService';
 import AppError from '@shared/errors/AppError';
 
 export default class LessonStatsController {
@@ -53,5 +54,19 @@ export default class LessonStatsController {
     });
 
     return res.json(lessonStats);
+  }
+
+  public async delete(req: Request, res: Response): Promise<DeleteResponse> {
+    const { activityId } = req.params;
+
+    const deleteLessonFeedService = container.resolve(
+      DeleteLessonFeedService,
+    );
+
+    await deleteLessonFeedService.execute({
+      activityId
+    });
+
+    return res.status(204).send()
   }
 }
