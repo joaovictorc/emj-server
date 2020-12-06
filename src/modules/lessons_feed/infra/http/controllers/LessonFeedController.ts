@@ -36,7 +36,7 @@ export default class LessonStatsController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { user_id, subject_id, lesson_id, desc, file_url } = req.body;
+    const { user_id, subject_id, lesson_id, desc, file_url, file_name, file_type } = req.body;
 
     const createLessonFeedService = container.resolve(
       CreateLessonFeedService,
@@ -47,7 +47,9 @@ export default class LessonStatsController {
       subject_id,
       lesson_id,
       desc,
-      file_url
+      file_url,
+      file_name,
+      file_type
     });
 
     return res.json(lessonStats);

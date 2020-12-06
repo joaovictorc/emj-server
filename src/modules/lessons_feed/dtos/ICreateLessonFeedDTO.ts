@@ -4,4 +4,6 @@ export default interface ICreateLessonFeedDTO {
   user_id: string;
   desc: string;
   file_url: string;
+  file_name: string;
+  file_type: string;
 }

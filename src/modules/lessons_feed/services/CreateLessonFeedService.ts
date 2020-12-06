@@ -11,6 +11,8 @@ interface IRequest {
   lesson_id: string;
   desc: string;
   file_url: string;
+  file_name: string;
+  file_type: string;
 }
 
 @injectable()
@@ -20,7 +22,7 @@ class CreateLessonStatsService {
     private lessonFeedRepository: ILessonFeedRepository,
   ) {}
 
-  public async execute({ user_id, subject_id, lesson_id, desc, file_url }: IRequest): Promise<LessonFeed> {
+  public async execute({ user_id, subject_id, lesson_id, desc, file_url, file_name, file_type }: IRequest): Promise<LessonFeed> {
 
     function isValidUrl(string: string) {
       try {
@@ -50,7 +52,9 @@ class CreateLessonStatsService {
       subject_id,
       lesson_id,
       desc,
-      file_url
+      file_url,
+      file_name,
+      file_type
     });
 
     return lessonStats;

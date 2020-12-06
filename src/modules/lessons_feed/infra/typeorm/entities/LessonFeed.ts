@@ -44,6 +44,12 @@ class LessonFeed {
   @Column()
   file_url: string;
 
+  @Column()
+  file_name: string;
+
+  @Column()
+  file_type: string;
+
   @CreateDateColumn()
   created_at: Date;
 
