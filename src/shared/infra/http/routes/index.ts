@@ -10,6 +10,7 @@ import subjectsRouter from '@modules/subjects/infra/http/routes/subjects.routes'
 import studentsRouter from '@modules/students/infra/http/routes/students.routes';
 import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
 import lessonStatsRouter from '@modules/lessonstats/infra/http/routes/lessonStats.routes';
+import lessonFeedRouter from '@modules/lessons_feed/infra/http/routes/lessonFeed.routes';
 
 const routes = Router();
 
@@ -23,5 +24,6 @@ routes.use('/subjects', subjectsRouter);
 routes.use('/students', studentsRouter);
 routes.use('/lessons', lessonsRouter);
 routes.use('/lesson-stats', lessonStatsRouter);
+routes.use('/lesson-feed', lessonFeedRouter);
 
 export default routes;
