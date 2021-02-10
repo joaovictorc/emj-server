@@ -20,7 +20,7 @@ class CreatePlansService {
 
     if (!classData) {
       throw new AppError(
-        'The class you are trying to delete does not exist in the records',
+        'A turma que você está tentando deletar não existe nos registros.',
       );
     }
 

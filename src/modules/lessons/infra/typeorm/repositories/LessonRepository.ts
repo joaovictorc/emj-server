@@ -15,6 +15,11 @@ class LessonRepository implements ILessonRepository {
   public async findAll(): Promise<Lesson[] | undefined> {
     const dataClass = await this.ormRepository.find({
       relations: ['subjects', 'class'],
+      where: {
+        date: Raw(
+          (dateFieldName) => `to_char(${dateFieldName}, 'YYYY') = '${`2021`}'`,
+        ),
+      },
     });
 
     return dataClass;
@@ -71,6 +76,9 @@ class LessonRepository implements ILessonRepository {
     const findLessons = await this.ormRepository.find({
       where: {
         class_id: class_id,
+        date: Raw(
+          (dateFieldName) => `to_char(${dateFieldName}, 'YYYY') = '${`2021`}'`,
+        ),
       },
       relations: ['subjects'],
     });
@@ -84,6 +92,9 @@ class LessonRepository implements ILessonRepository {
     const findLessons = await this.ormRepository.find({
       where: {
         subjects_id: subject_id,
+        date: Raw(
+          (dateFieldName) => `to_char(${dateFieldName}, 'YYYY') = '${`2021`}'`,
+        ),
       },
       relations: ['subjects'],
     });
