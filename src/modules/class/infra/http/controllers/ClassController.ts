@@ -7,6 +7,12 @@ import CreateClassService from '@modules/class/services/CreateClassService';
 import UpdateClassService from '@modules/class/services/UpdateClassService';
 import DeleteClassService from '@modules/class/services/DeleteClassService';
 
+export interface IGetUserAuthInfoRequest extends Request {
+  user: {
+    id: string;
+  };
+}
+
 export default class ClassController {
   public async index(req: Request, res: Response): Promise<Response> {
     const listAllClasses = container.resolve(ListAllClasses);
@@ -56,12 +62,18 @@ export default class ClassController {
     return res.json(classData);
   }
 
-  public async delete(req: Request, res: Response): Promise<Response> {
+  public async delete(
+    req: IGetUserAuthInfoRequest,
+    res: Response,
+  ): Promise<Response> {
+    const user_id = req.user.id;
     const { classId } = req.params;
 
-    // const deleteClassService = container.resolve(DeleteClassService);
+    console.log(user_id, 'sisi');
 
-    // await deleteClassService.execute({ classId });
+    const deleteClassService = container.resolve(DeleteClassService);
+
+    await deleteClassService.execute({ classId, user_id });
 
     return res.status(204).send();
   }
