@@ -11,6 +11,8 @@ import studentsRouter from '@modules/students/infra/http/routes/students.routes'
 import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
 import lessonStatsRouter from '@modules/lessonstats/infra/http/routes/lessonStats.routes';
 import lessonFeedRouter from '@modules/lessons_feed/infra/http/routes/lessonFeed.routes';
+import commentsRouter from '@modules/comments/infra/http/routes/comments.routes';
+import notificationsRouter from '@modules/notifications/infra/http/routes/notifications.routes';
 
 const routes = Router();
 
@@ -25,5 +27,7 @@ routes.use('/students', studentsRouter);
 routes.use('/lessons', lessonsRouter);
 routes.use('/lesson-stats', lessonStatsRouter);
 routes.use('/lesson-feed', lessonFeedRouter);
+routes.use('/comments', commentsRouter);
+routes.use('/notifications', notificationsRouter);
 
 export default routes;

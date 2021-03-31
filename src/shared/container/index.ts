@@ -27,6 +27,12 @@ import LessonStatsRepository from '@modules/lessonstats/infra/typeorm/repositori
 import ILessonFeedRepository from '@modules/lessons_feed/repositories/ILessonFeedRepository';
 import LessonFeedRepository from '@modules/lessons_feed/infra/typeorm/repositories/LessonFeedRepository';
 
+import ICommentsRepository from '@modules/comments/repositories/ICommentsRepository';
+import CommentsRepository from '@modules/comments/infra/typeorm/repositories/CommentsRepository';
+
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
+import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -65,4 +71,14 @@ container.registerSingleton<ILessonStatsRepository>(
 container.registerSingleton<ILessonFeedRepository>(
   'LessonFeedRepository',
   LessonFeedRepository,
+);
+
+container.registerSingleton<ICommentsRepository>(
+  'CommentsRepository',
+  CommentsRepository,
+);
+
+container.registerSingleton<INotificationsRepository>(
+  'NotificationsRepository',
+  NotificationsRepository,
 );
